@@ -83,7 +83,7 @@ button:active {
 
 .modifier {
     color: var(--dark-grey);
-    background-color: var(--light-grey);
+    background-color: rgb(169, 165, 169) ;
 }
 
 .number {
