@@ -4,6 +4,7 @@ const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 const equalsSign = document.querySelector('.equals');
 const allClear = document.querySelector('.clear');
+const backspace = document.querySelector('.backspace');
 
 function add(...args) {
     return args.reduce((a, b) => a + b)
@@ -26,15 +27,15 @@ function operate(a, b, operator) {
     switch (operator) {
 
         case '+':
-            return add(a, b);
+            return add(a, b)
             break;
 
         case '-':
-            return subtract(a, b);
+            return subtract(a, b)
             break;
 
         case 'x':
-            return multiply(a, b);
+            return multiply(a, b)
             break;
         case '÷':
             return divide(a, b)
@@ -110,3 +111,8 @@ equalsSign.addEventListener('click', () => {
 });
 
 allClear.addEventListener('click', () => clear());
+
+backspace.addEventListener('click', () => {
+    if (currentOperation !== '') currentOperation = currentOperation.toString().slice(0, -1);
+    display.textContent = setDisplayValue(currentOperation);
+});
