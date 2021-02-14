@@ -56,9 +56,26 @@ function evaluate(operation) {
             return 'Nope!'
         }
         const result = operate(nums[0], nums[1], operator);
-        return result
+        const roundedResult = Math.round(result * 10) / 10;
+        return roundedResult
     }
     return '';
+}
+
+function clear() {
+    currentOperation = '';
+    display.textContent = '0';
+}
+
+function nope(expressionResult) {
+    if (expressionResult == 'Nope!') {
+        display.textContent = expressionResult;
+        clear();
+    }
+}
+
+function setDisplayValue(value) {
+    return (value != '') ? value : '0';
 }
 
 numbers.forEach(number => {
@@ -73,13 +90,10 @@ operators.forEach(operator => {
         let operatorValue = operator.textContent;
         if (splitOperation(currentOperation).length < 3) {
             currentOperation += (currentOperation != '') ? ` ${operatorValue} ` : '';
-            display.textContent = currentOperation;
+            display.textContent = setDisplayValue(currentOperation);
         } else {
             let expressionResult = evaluate(currentOperation);
-            if (expressionResult == 'Nope!') {
-                display.textContent = expressionResult;
-                currentOperation = '';
-            }
+            nope();
             currentOperation = `${expressionResult} ${operatorValue} `;
             display.textContent = currentOperation;
         }
@@ -89,16 +103,10 @@ operators.forEach(operator => {
 equalsSign.addEventListener('click', () => {
     let expressionResult = evaluate(currentOperation);
     if (expressionResult !== null) {
-        if (expressionResult == 'Nope!') {
-            currentOperation = '';
-        }
-        display.textContent = expressionResult;
+        nope();
+        display.textContent = setDisplayValue(expressionResult);
         currentOperation = expressionResult;
     }
 });
 
-allClear.addEventListener('click', () => {
-    currentOperation = '';
-    display.textContent = '0';
-});
-
+allClear.addEventListener('click', () => clear());
