@@ -26,14 +26,26 @@ body {
         transparent 75%, 
         transparent
         );
-     background-size: 5px 5px;
+    background-size: 5px 5px;
+    overflow: hidden;
+}
+
+header {
+    display: grid;
+    place-items: center;
+    margin-top: 3rem;
+    margin-bottom: 0;
+}
+
+header h1 {
+    color: var(--light-grey);
+    font-family: 'Alegreya', serif;
 }
 
 main {
     height: 100vh;
     display: grid;
     place-items: center;
-    overflow: hidden;
 }
 
 .container {
